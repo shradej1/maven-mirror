@@ -35,11 +35,13 @@ open class RepoMirror : DefaultTask() {
             }
         }
 
-        val files = mutableSetOf<File>()
-        files.addAll(configurationFiles())
-        files.addAll(artifacts(componentIds, JvmLibrary::class, SourcesArtifact::class))
-        files.addAll(artifacts(componentIds, JvmLibrary::class, JavadocArtifact::class))
-        files.addAll(artifacts(componentIds, MavenModule::class, MavenPomArtifact::class))
+        val files = setOf(
+                configurationFiles(),
+                artifacts(componentIds, JvmLibrary::class, SourcesArtifact::class),
+                artifacts(componentIds, JvmLibrary::class, JavadocArtifact::class),
+                artifacts(componentIds, MavenModule::class, MavenPomArtifact::class)
+        ).flatten()
+
         files.sorted().forEach { println(it) }
     }
 

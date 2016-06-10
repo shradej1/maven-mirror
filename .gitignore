@@ -1,0 +1,11 @@
+# Gradle outputs
+.gradle
+build/
+
+# temp files
+.DS_STORE
+*~
+
+# IntelliJ files
+.idea
+out
